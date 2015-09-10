@@ -4,6 +4,7 @@
 #
 
 import sys
+import os
 import mmap
 import subprocess
 from array import array
@@ -125,7 +126,7 @@ def run_under_pin(mutation_filename):
     :returns: this bitmap
     """
     cmd_l.append(mutation_filename)
-    subprocess.call(cmd_l, shell = False)
+    subprocess.call(cmd_l, shell = False, env=dict(os.environ, __COMPAT_LAYER="WinXP"))
     cmd_l.pop()  # remove the filename from cmd :)
 
     # The PinTool has written its feedback into
